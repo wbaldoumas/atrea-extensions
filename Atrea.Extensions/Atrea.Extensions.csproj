@@ -4,8 +4,4 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="ListExtensions.cs~RFa1df83.TMP" />
-  </ItemGroup>
-
 </Project>
