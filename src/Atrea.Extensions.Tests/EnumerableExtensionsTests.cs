@@ -142,27 +142,6 @@ namespace Atrea.Extensions.Tests
         }
 
         [Test]
-        public async Task AddRange_Adds_Expected_Number_Of_Items()
-        {
-            var bag = new ConcurrentBag<int> {1, 2, 3};
-
-            var toAdd1 = new List<int> {4, 5, 6};
-            var toAdd2 = new List<int> {7, 8, 9};
-
-            var toAddLists = new List<List<int>> {toAdd1, toAdd2};
-
-            var expectedBag = new ConcurrentBag<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
-
-            // Do things async, to emulate real-world usage.
-            await toAddLists.ForEachAsync(
-                toAddLists.Count,
-                async t => { await Task.Run(() => bag.AddRange(t)); }
-            );
-
-            bag.Should().BeEquivalentTo(expectedBag);
-        }
-
-        [Test]
         public void None()
         {
             new int[0].None().Should().BeTrue();
@@ -224,6 +203,153 @@ namespace Atrea.Extensions.Tests
 
             // ReSharper disable once ExpressionIsAlwaysNull
             tuples.DistinctBy(t => t.Item1).None().Should().BeTrue();
+        }
+
+        [Test]
+        public async Task AddRange_Adds_Expected_Number_Of_Items()
+        {
+            var bag = new ConcurrentBag<int> {1, 2, 3};
+
+            var toAddA = new List<int> {4, 5, 6};
+            var toAddB = new List<int> {7, 8, 9};
+
+            var toAddLists = new List<List<int>> {toAddA, toAddB};
+
+            var expectedBag = new ConcurrentBag<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+            // Doing things async, to emulate real-world usage of ConcurrentBag.
+            await toAddLists.ForEachAsync(
+                toAddLists.Count,
+                async t => { await Task.Run(() => bag.AddRange(t)); }
+            );
+
+            bag.Should().BeEquivalentTo(expectedBag);
+        }
+
+        private static IEnumerable<TestCaseData> IsInAscendingOrderIntegersTestCases
+        {
+            // ReSharper disable once UnusedMember.Local
+            get
+            {
+                yield return new TestCaseData(
+                    new List<int> {1, 2, 3, 4, 5},
+                    true
+                ).SetName("Already sorted list is evaluated as being in ascending order.");
+
+                yield return new TestCaseData(
+                    new List<int>(),
+                    true
+                ).SetName("Empty list is evaluated as being in ascending order.");
+
+                yield return new TestCaseData(
+                    new List<int> {1},
+                    true
+                ).SetName("List with just one item is evaluated as being in ascending order.");
+
+                yield return new TestCaseData(
+                    new List<int> {5, 4, 3, 2, 1},
+                    false
+                ).SetName("Descending ordered list is not considered to be in ascending order.");
+
+                yield return new TestCaseData(
+                    new List<int> {5, 1, 4, 2, 3},
+                    false
+                ).SetName("Randomized list is not considered to be in ascending order.");
+            }
+        }
+
+        [TestCaseSource(nameof(IsInAscendingOrderIntegersTestCases))]
+        public void IsInAscendingOrder(IEnumerable<int> items, bool expectedIsInAscendingOrder)
+        {
+            items.IsInAscendingOrder(i => i).Should().Be(expectedIsInAscendingOrder);
+        }
+
+        [Test]
+        public void Shuffle_Shuffles_Enumeration_Elements()
+        {
+            var integers = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+            integers.Should().BeInAscendingOrder();
+
+            while (integers.IsInAscendingOrder(i => i))
+            {
+                integers.Shuffle();
+            }
+
+            integers.Should().NotBeInAscendingOrder();
+        }
+
+        private static IEnumerable<TestCaseData> CombinationsTestCases
+        {
+            // ReSharper disable once UnusedMember.Local
+            get
+            {
+                yield return new TestCaseData(
+                    new List<int> {1, 2, 3, 4, 5},
+                    3,
+                    new List<int[]>
+                    {
+                        new[] {1, 2, 3},
+                        new[] {1, 2, 4},
+                        new[] {1, 2, 5},
+                        new[] {1, 3, 4},
+                        new[] {1, 3, 5},
+                        new[] {1, 4, 5},
+                        new[] {2, 3, 4},
+                        new[] {2, 3, 5},
+                        new[] {2, 4, 5},
+                        new[] {3, 4, 5}
+                    }
+                ).SetName("Combinations of combination size three produces expected results.");
+
+                yield return new TestCaseData(
+                    new List<int> {1, 2, 3, 4, 5},
+                    2,
+                    new List<int[]>
+                    {
+                        new[] {1, 2},
+                        new[] {1, 3},
+                        new[] {1, 4},
+                        new[] {1, 5},
+                        new[] {2, 3},
+                        new[] {2, 4},
+                        new[] {2, 5},
+                        new[] {3, 4},
+                        new[] {3, 5},
+                        new[] {4, 5}
+                    }
+                ).SetName("Combinations of combination size two produces expected results.");
+
+                yield return new TestCaseData(
+                    new List<int> {1, 2, 3, 4, 5},
+                    1,
+                    new List<int[]>
+                    {
+                        new[] {1},
+                        new[] {2},
+                        new[] {3},
+                        new[] {4},
+                        new[] {5}
+                    }
+                ).SetName("Combinations of combination size one produces expected results.");
+
+                yield return new TestCaseData(
+                    new List<int> {1},
+                    1,
+                    new List<int[]> {new[] {1}}
+                ).SetName("Single item in source enumeration results in single result list.");
+            }
+        }
+
+        [TestCaseSource(nameof(CombinationsTestCases))]
+        public void Combinations_Results_In_Expected_Combinations(
+            IList<int> items,
+            int combinationSize,
+            List<int[]> expectedCombinations)
+        {
+            var combinations = items.Combinations(combinationSize);
+
+            combinations.Should().BeEquivalentTo(expectedCombinations);
         }
     }
 }
