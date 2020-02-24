@@ -197,22 +197,6 @@ namespace Atrea.Extensions
         }
 
         /// <summary>
-        ///     Apply a side-effect function to each element of an enumerable.
-        /// </summary>
-        /// <typeparam name="T">The source enumeration type</typeparam>
-        /// <param name="source">The source enumeration</param>
-        /// <param name="action">The side-effect action to perform on T</param>
-        /// <returns>The input sequence after having the action performed on each member</returns>
-        public static IEnumerable<T> Apply<T>(this IEnumerable<T> source, Action<T> action)
-        {
-            foreach (var item in source)
-            {
-                action(item);
-                yield return item;
-            }
-        }
-
-        /// <summary>
         ///     Extension to add multiple items at a time to a ConcurrentBag.
         /// </summary>
         /// <typeparam name="T">The source enumeration type</typeparam>
