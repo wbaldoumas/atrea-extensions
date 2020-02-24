@@ -197,22 +197,6 @@ namespace Atrea.Extensions
         }
 
         /// <summary>
-        ///     Apply a side-effect function to each element of an enumerable.
-        /// </summary>
-        /// <typeparam name="T">The source enumeration type</typeparam>
-        /// <param name="source">The source enumeration</param>
-        /// <param name="action">The side-effect action to perform on T</param>
-        /// <returns>The input sequence after having the action performed on each member</returns>
-        public static IEnumerable<T> Apply<T>(this IEnumerable<T> source, Action<T> action)
-        {
-            foreach (var item in source)
-            {
-                action(item);
-                yield return item;
-            }
-        }
-
-        /// <summary>
         ///     Extension to add multiple items at a time to a ConcurrentBag.
         /// </summary>
         /// <typeparam name="T">The source enumeration type</typeparam>
@@ -224,6 +208,44 @@ namespace Atrea.Extensions
             {
                 source.Add(item);
             }
+        }
+
+        /// <summary>
+        ///     Checks if the enumeration is in ascending order.
+        /// </summary>
+        /// <typeparam name="T">The source enumeration type</typeparam>
+        /// <typeparam name="TKey">The selector type to filter on</typeparam>
+        /// <param name="source">The source enumeration to check</param>
+        /// <param name="keySelector">The selector to filter on</param>
+        /// <returns></returns>
+        public static bool IsInAscendingOrder<T, TKey>(
+            this IEnumerable<T> source,
+            Func<T, TKey> keySelector)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            var comparer = Comparer<TKey>.Default;
+
+            using (var iterator = source.GetEnumerator())
+            {
+                if (!iterator.MoveNext())
+                    return true;
+
+                var current = keySelector(iterator.Current);
+
+                while (iterator.MoveNext())
+                {
+                    var next = keySelector(iterator.Current);
+
+                    if (comparer.Compare(current, next) > 0)
+                        return false;
+
+                    current = next;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -278,7 +300,7 @@ namespace Atrea.Extensions
                     result[i] = source[indexCombinations[i]];
                 }
 
-                yield return (T[])result.Clone();
+                yield return (T[]) result.Clone();
             }
         }
 
@@ -306,7 +328,7 @@ namespace Atrea.Extensions
                     result[index++] = value++;
                     stack.Push(value);
                     if (index != combinationSize) continue;
-                    yield return (int[])result.Clone();
+                    yield return (int[]) result.Clone();
                     break;
                 }
             }
