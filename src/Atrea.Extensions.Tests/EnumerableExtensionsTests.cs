@@ -105,8 +105,6 @@ namespace Atrea.Extensions.Tests
             {
                 value.Should().NotBeNull();
             }
-
-            threadDictionary.Values.Should().OnlyHaveUniqueItems();
         }
 
         [Test]
