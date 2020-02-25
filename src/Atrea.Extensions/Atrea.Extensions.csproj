@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company />
+    <Product />
+    <Authors>William Baldoumas</Authors>
+    <Description>Useful extension methods for .NET.</Description>
   </PropertyGroup>
 
 </Project>
