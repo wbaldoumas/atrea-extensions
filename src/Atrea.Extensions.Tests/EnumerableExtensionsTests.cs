@@ -66,8 +66,10 @@ namespace Atrea.Extensions.Tests
         public void BatchBy_With_Count_Equal_To_Batch_Size_Results_In_One_Batch()
         {
             var list = new List<string>();
+
             const int batchSize = 10;
             const int count = batchSize;
+
             for (var i = 0; i < count; i++)
             {
                 list.Add("entry");
@@ -80,7 +82,7 @@ namespace Atrea.Extensions.Tests
         }
 
         [Test]
-        public async Task ForEachAsync_Runs_On_The_Expected_Number_Of_Unique_Threads()
+        public async Task ForEachAsync_Correctly_Applies_Values_To_Enumeration()
         {
             // arrange
             var threadDictionary = new ConcurrentDictionary<string, int?>();
@@ -93,22 +95,15 @@ namespace Atrea.Extensions.Tests
             // act
             await threadDictionary.ForEachAsync(
                 threadDictionary.Count,
-                async t =>
-                {
-                    var threadId = Thread.CurrentThread.ManagedThreadId;
-
-                    await Task.Run(() => { threadDictionary[t.Key] = threadId; });
-                });
+                async t => { await Task.Run(() => { threadDictionary[t.Key] = 1; }); });
 
             // assert
-            foreach (var value in threadDictionary.Values)
-            {
-                value.Should().NotBeNull();
-            }
+            threadDictionary.Values.Should().NotContainNulls();
+            threadDictionary.Values.Should().AllBeEquivalentTo(1);
         }
 
         [Test]
-        public async Task ForEachAsync_With_Return_Runs_On_The_Expected_Number_Of_Unique_Threads()
+        public async Task ForEachAsync_With_Return_Generates_Expected_Number_Of_Values()
         {
             // arrange
             var strings = new List<string>
@@ -136,7 +131,6 @@ namespace Atrea.Extensions.Tests
 
             // assert
             threadIds.Should().HaveSameCount(strings);
-            threadIds.Should().OnlyHaveUniqueItems();
         }
 
         [Test]
