@@ -72,17 +72,18 @@ namespace Atrea.Extensions
             var results = new ConcurrentBag<TOut>();
 
             var tasks = partitions.Select(
-                partition => Task.Run(
-                    () =>
-                    {
-                        using (partition)
+                partition
+                    => Task.Run(
+                        () =>
                         {
-                            while (partition.MoveNext())
+                            using (partition)
                             {
-                                results.Add(func(partition.Current).Result);
+                                while (partition.MoveNext())
+                                {
+                                    results.Add(func(partition.Current).Result);
+                                }
                             }
-                        }
-                    })).ToList();
+                        })).ToList();
 
             await Task.WhenAll(tasks);
 
