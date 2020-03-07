@@ -188,6 +188,7 @@ namespace Atrea.Extensions.Tests
             // act
             var result = dictionary.ToReadableString();
 
+            // assert
             result.Should().Be(string.Empty);
         }
 
