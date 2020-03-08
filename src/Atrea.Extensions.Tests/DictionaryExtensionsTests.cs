@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Atrea.Extensions.Tests
 {
     [TestFixture]
-    public class DictionaryExtensionTests
+    public class DictionaryExtensionsTests
     {
         [Test]
         public void When_Merge_Is_Called_With_NonOverlapping_Keys_The_Two_Dictionaries_Are_Merged()
@@ -41,6 +41,69 @@ namespace Atrea.Extensions.Tests
                 {keyB, valueB},
                 {keyC, valueC},
                 {keyD, valueD}
+            };
+
+            // act
+            var result = dictionaryA.Merge(dictionaryB);
+
+            // assert
+            result.Should().BeEquivalentTo(expectedDictionary);
+        }
+
+        [Test]
+        public void When_Merge_Is_Called_With_Null_Source_Dictionary_The_Passed_Dictionary_Is_Returned_Unmodified()
+        {
+            // arrange
+            const string keyA = "a";
+            const int valueA = 1;
+
+            const string keyB = "b";
+            const int valueB = 2;
+
+            Dictionary<string, int> dictionaryA = null;
+
+            var dictionaryB = new Dictionary<string, int>
+            {
+                {keyA, valueA},
+                {keyB, valueB}
+            };
+
+            var expectedDictionary = new Dictionary<string, int>
+            {
+                {keyA, valueA},
+                {keyB, valueB}
+            };
+
+            // act
+            // ReSharper disable once ExpressionIsAlwaysNull
+            var result = dictionaryA.Merge(dictionaryB);
+
+            // assert
+            result.Should().BeEquivalentTo(expectedDictionary);
+        }
+
+        [Test]
+        public void When_Merge_Is_Called_With_Empty_Source_Dictionary_The_Passed_Dictionary_Is_Returned_Unmodified()
+        {
+            // arrange
+            const string keyA = "a";
+            const int valueA = 1;
+
+            const string keyB = "b";
+            const int valueB = 2;
+
+            var dictionaryA = new Dictionary<string, int>();
+
+            var dictionaryB = new Dictionary<string, int>
+            {
+                {keyA, valueA},
+                {keyB, valueB}
+            };
+
+            var expectedDictionary = new Dictionary<string, int>
+            {
+                {keyA, valueA},
+                {keyB, valueB}
             };
 
             // act

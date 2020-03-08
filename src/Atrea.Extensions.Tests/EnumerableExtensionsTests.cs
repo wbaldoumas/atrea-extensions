@@ -257,9 +257,24 @@ namespace Atrea.Extensions.Tests
         }
 
         [Test]
+        public void When_IsInAscendingOrder_Is_Called_With_Null_Source_Exception_Is_Thrown()
+        {
+            // arrange
+            List<int> nullList = null;
+
+            // act
+            // ReSharper disable once ExpressionIsAlwaysNull
+            Action act = () => nullList.IsInAscendingOrder(i => i);
+
+            // assert
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        [Test]
         public void Shuffle_Shuffles_Enumeration_Elements()
         {
             var integers = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            var expectedIntegers = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
             integers.Should().BeInAscendingOrder();
 
@@ -269,6 +284,9 @@ namespace Atrea.Extensions.Tests
             }
 
             integers.Should().NotBeInAscendingOrder();
+            integers.Should().OnlyHaveUniqueItems();
+            integers.Should().HaveSameCount(expectedIntegers);
+            integers.Should().BeSubsetOf(expectedIntegers);
         }
 
         private static IEnumerable<TestCaseData> CombinationsTestCases
@@ -342,6 +360,35 @@ namespace Atrea.Extensions.Tests
             var combinations = items.Combinations(combinationSize);
 
             combinations.Should().BeEquivalentTo(expectedCombinations);
+        }
+
+        [Test]
+        public void Combinations_Throws_Exception_When_Combination_Size_Is_Greater_Than_Enumerable_Count()
+        {
+            // arrange
+            var items = new List<int> {1};
+
+            // act
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
+            Action act = () => items.Combinations(5).ToList();
+
+            // assert
+            act.Should().Throw<ArgumentException>()
+                .WithMessage("List length can't be less than number of selected elements");
+        }
+
+        [Test]
+        public void Combinations_Throws_Exception_When_Combination_Size_Is_Less_Than_One()
+        {
+            // arrange
+            var items = new List<int> {1};
+
+            // act
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
+            Action act = () => items.Combinations(0).ToList();
+
+            // assert
+            act.Should().Throw<ArgumentException>().WithMessage("Number of selected elements can't be less than 1");
         }
     }
 }
