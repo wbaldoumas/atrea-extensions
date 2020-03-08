@@ -13,6 +13,13 @@ jobs:
       uses: actions/setup-dotnet@v1.4.0
     - name: Build with dotnet
       run: cd src && dotnet build --configuration Release
-    - name: Unit test
-      run: cd src && dotnet test
-
+    - name: Unit test with coverage report
+      run: |
+        printenv
+        cd ./src/Atrea.Extensions.Tests/
+        dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+    - name: Publish coverage report to coveralls.io
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: ./src/Atrea.Extensions.Tests/TestResults/coverage.info
