@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Atrea.Extensions
 {
+    /// <summary>
+    ///     A set of useful extension methods related to the <see cref="IEnumerable{T}"/> type.
+    /// </summary>
     public static class EnumerableExtensions
     {
         /// <summary>

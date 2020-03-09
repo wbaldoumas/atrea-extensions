@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace Atrea.Extensions
 {
+    /// <summary>
+    ///     A set of useful extension methods for the <see cref="string"/> type.
+    /// </summary>
     public static class StringExtensions
     {
         private static readonly Regex WhitespaceRegex = new Regex(@"[\s]+", RegexOptions.Compiled);
