@@ -4,11 +4,15 @@ using System.Linq;
 
 namespace Atrea.Extensions
 {
+    /// <summary>
+    ///     A set of useful extension methods related to the <see cref="IDictionary{TKey,TValue}"/> type.
+    /// </summary>
     public static class DictionaryExtensions
     {
         /// <summary>
-        ///     Merge new dictionary into source directory, overwriting on duplicate keys.
-        ///     If the second dictionary is null or empty, the first dictionary is returned unmodified.
+        ///     Merge the new dictionary into the source directory, overwriting on duplicate keys.
+        ///     If the new dictionary is null or empty, the first dictionary is returned unmodified.
+        ///     If the source dictionary is null or empty, the new dictionary is returned unmodified.
         /// </summary>
         /// <typeparam name="TKey">The dictionary key type</typeparam>
         /// <typeparam name="TValue">The dictionary value type</typeparam>
