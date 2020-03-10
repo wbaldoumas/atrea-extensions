@@ -23,6 +23,8 @@ dotnet add package Atrea.Extensions --version 1.2.0
 
 #### Release Notes:
 
+- **1.2.1**
+  - Added additional NuGet package metadata
 - **1.2.0**
   - Added `StringExtensions`
   - Added `StringExtensionsTests`
