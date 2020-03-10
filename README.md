@@ -13,12 +13,12 @@ Useful extension methods for .NET.
 
 Package manager:
 ```
-Install-Package Atrea.Extensions -Version 1.2.0
+Install-Package Atrea.Extensions -Version 1.2.1
 ```
 
 .NET CLI:
 ```
-dotnet add package Atrea.Extensions --version 1.2.0
+dotnet add package Atrea.Extensions --version 1.2.1
 ```
 
 #### Release Notes:
