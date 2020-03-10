@@ -7,12 +7,19 @@
     <Product />
     <Authors>William Baldoumas</Authors>
     <Description>Useful extension methods for .NET.</Description>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
   </PropertyGroup>
 
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Atrea.Extensions.xml</DocumentationFile>
     <DefaultDocumentationFolder>..\..\documentation</DefaultDocumentationFolder>
+    <RepositoryUrl>https://github.com/itabaiyu/atrea-extensions.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>extensions, extension methods, enumerable, ienumerable, dictionary, string, utility</PackageTags>
+    <PackageProjectUrl>https://github.com/itabaiyu/atrea-extensions</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <NeutralLanguage></NeutralLanguage>
+    <Copyright>Copyright ©2020 William Baldoumas</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +27,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
