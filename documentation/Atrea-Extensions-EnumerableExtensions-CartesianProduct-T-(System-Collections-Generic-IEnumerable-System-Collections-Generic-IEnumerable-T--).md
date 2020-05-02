@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.CartesianProduct&lt;T&gt;(System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;T&gt;&gt;) Method
 Creates and returns the cartesian product of a list of sequences.  

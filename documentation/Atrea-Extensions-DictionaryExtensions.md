@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions')
 ## DictionaryExtensions Class
 A set of useful extension methods related to the [System.Collections.Generic.IDictionary&lt;&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IDictionary-2 'System.Collections.Generic.IDictionary`2') type.  

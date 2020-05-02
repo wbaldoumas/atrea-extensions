@@ -1,14 +1,11 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[StringExtensions](./Atrea-Extensions-StringExtensions.md 'Atrea.Extensions.StringExtensions')
 ## StringExtensions.ContainsNumericText(string) Method
 Checks whether the source string contains numeric text.  
-
 Example strings that would return true:  
-
-    "One way to shop"  
-    "A billion things to do"  
-    "There are 4 things"  
-    "There are actually 3.5 things"  
+"One way to shop"  
+"A billion things to do"  
+"There are 4 things"  
+"There are actually 3.5 things"  
 ```csharp
 public static bool ContainsNumericText(this string source);
 ```

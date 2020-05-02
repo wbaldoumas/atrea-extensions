@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.None&lt;T&gt;(System.Collections.Generic.IEnumerable&lt;T&gt;) Method
 Negation of standard Any() method.  

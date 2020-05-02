@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.ForEachWithIndex&lt;T&gt;(System.Collections.Generic.IList&lt;T&gt;, System.Action&lt;T,int&gt;) Method
 Iterate over a list, returning both the index and the item.  

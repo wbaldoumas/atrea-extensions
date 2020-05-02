@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.IsInAscendingOrder&lt;T,TKey&gt;(System.Collections.Generic.IEnumerable&lt;T&gt;, System.Func&lt;T,TKey&gt;) Method
 Checks if the enumeration is in ascending order.  

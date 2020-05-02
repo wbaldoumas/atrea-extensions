@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.Shuffle&lt;T&gt;(System.Collections.Generic.IList&lt;T&gt;) Method
 Shuffles the source list.  

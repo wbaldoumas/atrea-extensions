@@ -1,9 +1,8 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[StringExtensions](./Atrea-Extensions-StringExtensions.md 'Atrea.Extensions.StringExtensions')
 ## StringExtensions.ReplaceWord(string, string, string) Method
-In contrast to string.Replace, this will only replace whole words. For example:   
-Using this method on the string "test testing test" and passing "test" as oldValue   
-and "text", this will return the string "text testing text", whereas   
+In contrast to string.Replace, this will only replace whole words. For example:  
+Using this method on the string "test testing test" and passing "test" as oldValue  
+and "text", this will return the string "text testing text", whereas  
 string.Replace would return "text texting text."  
 ```csharp
 public static string ReplaceWord(this string source, string oldValue, string newValue);
