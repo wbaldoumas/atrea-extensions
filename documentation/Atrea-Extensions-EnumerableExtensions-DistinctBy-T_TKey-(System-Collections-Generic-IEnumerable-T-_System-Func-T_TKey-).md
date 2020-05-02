@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.DistinctBy&lt;T,TKey&gt;(System.Collections.Generic.IEnumerable&lt;T&gt;, System.Func&lt;T,TKey&gt;) Method
 Iterate over a enumeration, filtering out distinct items by property.  

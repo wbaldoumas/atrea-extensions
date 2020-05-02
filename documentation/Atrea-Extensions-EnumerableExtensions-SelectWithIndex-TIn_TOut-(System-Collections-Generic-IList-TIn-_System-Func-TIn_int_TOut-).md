@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.SelectWithIndex&lt;TIn,TOut&gt;(System.Collections.Generic.IList&lt;TIn&gt;, System.Func&lt;TIn,int,TOut&gt;) Method
 Iterate over a list, projecting using both the index and the item, a la Select(...).  

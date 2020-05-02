@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.BatchBy&lt;T&gt;(System.Collections.Generic.IEnumerable&lt;T&gt;, int) Method
 Batch items in an enumerable by batchSize.  Does not fully load the source enumeration  

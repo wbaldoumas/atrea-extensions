@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ## Atrea.Extensions Namespace
 ### Classes
 - [DictionaryExtensions](./Atrea-Extensions-DictionaryExtensions.md 'Atrea.Extensions.DictionaryExtensions')

@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[StringExtensions](./Atrea-Extensions-StringExtensions.md 'Atrea.Extensions.StringExtensions')
 ## StringExtensions.CompressWhiteSpaceKeepNewLines(string) Method
 Compress all whitespace into single spaces, keeping new lines.  

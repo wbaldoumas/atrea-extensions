@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[DictionaryExtensions](./Atrea-Extensions-DictionaryExtensions.md 'Atrea.Extensions.DictionaryExtensions')
 ## DictionaryExtensions.ToReadableString&lt;TKey,TValue&gt;(System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;&gt;) Method
 Creates a readable string value from a given dictionary.  
