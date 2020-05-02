@@ -13,16 +13,20 @@ Useful extension methods for .NET.
 
 Package manager:
 ```
-Install-Package Atrea.Extensions -Version 1.2.1
+Install-Package Atrea.Extensions -Version 1.3.0
 ```
 
 .NET CLI:
 ```
-dotnet add package Atrea.Extensions --version 1.2.1
+dotnet add package Atrea.Extensions --version 1.3.0
 ```
 
 #### Release Notes:
 
+*For detailed release notes, see the [releases page](https://github.com/itabaiyu/atrea-extensions/releases).*
+
+- **1.3.0**
+  - Added the `CartestianProduct` extension method for `IEnumerable<IEnumerable<T>>`
 - **1.2.1**
   - Added additional NuGet package metadata
 - **1.2.0**
@@ -33,3 +37,7 @@ dotnet add package Atrea.Extensions --version 1.2.1
   - Added `DictionaryExtensionsTests`
 - **1.0.0**
   - Initial release, with `EnumerableExtensions`
+  
+---
+  
+##### Show your support by contributing or starring the repo! :star::star::star::star::star: 
