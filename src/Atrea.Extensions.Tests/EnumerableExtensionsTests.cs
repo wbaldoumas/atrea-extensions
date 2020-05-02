@@ -390,5 +390,80 @@ namespace Atrea.Extensions.Tests
             // assert
             act.Should().Throw<ArgumentException>().WithMessage("Number of selected elements can't be less than 1");
         }
+
+        public static IEnumerable<TestCaseData> CartesianProductTestCases
+        {
+            get
+            {
+                yield return new TestCaseData(
+                    new List<List<int>>
+                    {
+                        new List<int> {1},
+                        new List<int> {2, 3},
+                        new List<int> {4, 5, 6}
+                    },
+                    new List<List<int>>
+                    {
+                        new List<int> {1, 2, 4},
+                        new List<int> {1, 2, 5},
+                        new List<int> {1, 2, 6},
+                        new List<int> {1, 3, 4},
+                        new List<int> {1, 3, 5},
+                        new List<int> {1, 3, 6}
+                    }
+                ).SetName("Cartesian product is generated from a list of lists containing values.");
+
+                yield return new TestCaseData(
+                    new List<List<int>>
+                    {
+                        new List<int> {1},
+                        new List<int>(),
+                        new List<int> {4, 5, 6}
+                    },
+                    new List<List<int>>
+                    {
+                        new List<int> {1, 4},
+                        new List<int> {1, 5},
+                        new List<int> {1, 6}
+                    }
+                ).SetName("Cartesian product is generated from a list of lists containing an empty list.");
+
+                yield return new TestCaseData(
+                    new List<List<int>>
+                    {
+                        new List<int>(),
+                        new List<int>(),
+                        new List<int>()
+                    },
+                    new List<List<int>>()
+                ).SetName("All empty sequences produce empty cartesian product.");
+
+                yield return new TestCaseData(
+                    new List<List<int>>
+                    {
+                        new List<int> {1, 2, 3},
+                        new List<int>(),
+                        new List<int>()
+                    },
+                    new List<List<int>>
+                    {
+                        new List<int> {1},
+                        new List<int> {2},
+                        new List<int> {3}
+                    }
+                ).SetName("All empty sequences produce empty cartesian product.");
+            }
+        }
+
+        [Test]
+        [TestCaseSource(nameof(CartesianProductTestCases))]
+        public void CartesianProduct_Creates_The_Expected_Cartesian_Product(
+            IEnumerable<IEnumerable<int>> items,
+            IEnumerable<IEnumerable<int>> expectedResult)
+        {
+            var result = items.CartesianProduct().ToList();
+
+            result.Should().BeEquivalentTo(expectedResult);
+        }
     }
 }
