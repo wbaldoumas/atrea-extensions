@@ -5,12 +5,60 @@ using System.Text.RegularExpressions;
 namespace Atrea.Extensions
 {
     /// <summary>
-    ///     A set of useful extension methods for the <see cref="string"/> type.
+    ///     A set of useful extension methods for the <see cref="string" /> type.
     /// </summary>
     public static class StringExtensions
     {
         private static readonly Regex WhitespaceRegex = new Regex(@"[\s]+", RegexOptions.Compiled);
         private static readonly Regex WhitespaceNoNewlinesRegex = new Regex(@"[^\S\r\n]+", RegexOptions.Compiled);
+
+        /// <summary>
+        ///     List of numeric text to be used in the ContainsNumericText extension below.
+        /// </summary>
+        private static readonly List<string> NumericStrings = new List<string>
+        {
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine",
+            "ten",
+            "eleven",
+            "twelve",
+            "thirteen",
+            "fourteen",
+            "fifteen",
+            "sixteen",
+            "seventeen",
+            "eighteen",
+            "nineteen",
+            "twenty",
+            "thirty",
+            "forty",
+            "fifty",
+            "sixty",
+            "seventy",
+            "eighty",
+            "ninety",
+            "hundred",
+            "thousand",
+            "million",
+            "billion",
+            "trillion"
+        };
+
+        /// <summary>
+        ///     Regex to be used in the string extension ContainsNumericText below.
+        /// </summary>
+        private static readonly Regex NumericRegexer = new Regex(
+            @"\b(" + string.Join("|",
+                NumericStrings.Select(Regex.Escape).ToArray()) + @"\b)|([0-9]+)",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase
+        );
 
         /// <summary>
         ///     Compress all whitespace into single spaces, including newlines.
@@ -81,9 +129,9 @@ namespace Atrea.Extensions
         }
 
         /// <summary>
-        ///     In contrast to string.Replace, this will only replace whole words. For example: 
-        ///     Using this method on the string "test testing test" and passing "test" as oldValue 
-        ///     and "text", this will return the string "text testing text", whereas 
+        ///     In contrast to string.Replace, this will only replace whole words. For example:
+        ///     Using this method on the string "test testing test" and passing "test" as oldValue
+        ///     and "text", this will return the string "text testing text", whereas
         ///     string.Replace would return "text texting text."
         /// </summary>
         /// <param name="source">The source string to replace words in</param>
@@ -103,62 +151,12 @@ namespace Atrea.Extensions
         }
 
         /// <summary>
-        ///     List of numeric text to be used in the ContainsNumericText extension below.
-        /// </summary>
-        private static readonly List<string> NumericStrings = new List<string>
-        {
-            "one",
-            "two",
-            "three",
-            "four",
-            "five",
-            "six",
-            "seven",
-            "eight",
-            "nine",
-            "ten",
-            "eleven",
-            "twelve",
-            "thirteen",
-            "fourteen",
-            "fifteen",
-            "sixteen",
-            "seventeen",
-            "eighteen",
-            "nineteen",
-            "twenty",
-            "thirty",
-            "forty",
-            "fifty",
-            "sixty",
-            "seventy",
-            "eighty",
-            "ninety",
-            "hundred",
-            "thousand",
-            "million",
-            "billion",
-            "trillion"
-        };
-
-        /// <summary>
-        ///     Regex to be used in the string extension ContainsNumericText below.
-        /// </summary>
-        private static readonly Regex NumericRegexer = new Regex(
-            @"\b(" + string.Join("|",
-                NumericStrings.Select(Regex.Escape).ToArray()) + @"\b)|([0-9]+)",
-            RegexOptions.Compiled | RegexOptions.IgnoreCase
-        );
-
-        /// <summary>
         ///     Checks whether the source string contains numeric text.
-        /// 
         ///     Example strings that would return true:
-        ///
-        ///         "One way to shop"
-        ///         "A billion things to do"
-        ///         "There are 4 things"
-        ///         "There are actually 3.5 things"
+        ///     "One way to shop"
+        ///     "A billion things to do"
+        ///     "There are 4 things"
+        ///     "There are actually 3.5 things"
         /// </summary>
         /// <param name="source">The source string to check for numeric text</param>
         /// <returns>Whether the string contains numeric text</returns>

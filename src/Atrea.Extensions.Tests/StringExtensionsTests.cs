@@ -3,10 +3,19 @@ using NUnit.Framework;
 
 namespace Atrea.Extensions.Tests
 {
-
     [TestFixture]
     public class StringExtensionTests
     {
+        [Test]
+        [TestCase("word second", "Word second")]
+        [TestCase("Word second", "Word second")]
+        [TestCase(null, null)]
+        [TestCase("", "")]
+        public void Capitalize(string inString, string expected)
+        {
+            Assert.AreEqual(expected, inString.Capitalize());
+        }
+
         [Test]
         [TestCase("    ", " ")]
         [TestCase("  \t\n\r\v  ", " ")]
@@ -25,36 +34,6 @@ namespace Atrea.Extensions.Tests
         public void CompressWhiteSpaceKeepNewLines(string inString, string expected)
         {
             Assert.AreEqual(expected, inString.CompressWhiteSpaceKeepNewLines());
-        }
-
-        [Test]
-        [TestCase("word second", "Word second")]
-        [TestCase("Word second", "Word second")]
-        [TestCase(null, null)]
-        [TestCase("", "")]
-        public void Capitalize(string inString, string expected)
-        {
-            Assert.AreEqual(expected, inString.Capitalize());
-        }
-
-        [Test]
-        [TestCase("word second", "word second")]
-        [TestCase("Word second", "word second")]
-        [TestCase(null, null)]
-        [TestCase("", "")]
-        public void Uncapitalize(string inString, string expected)
-        {
-            Assert.AreEqual(expected, inString.UnCapitalize());
-        }
-
-        [Test]
-        [TestCase("a a", "b b")]
-        [TestCase("aaa a aa", "aaa b aa")]
-        [TestCase(null, null)]
-        [TestCase("", "")]
-        public void ReplaceWholeWord(string inString, string expected)
-        {
-            Assert.AreEqual(expected, inString.ReplaceWord("a", "b"));
         }
 
         [Test]
@@ -90,6 +69,26 @@ namespace Atrea.Extensions.Tests
         public void DoesNotContainNumericText(string input)
         {
             Assert.IsFalse(input.ContainsNumericText());
+        }
+
+        [Test]
+        [TestCase("a a", "b b")]
+        [TestCase("aaa a aa", "aaa b aa")]
+        [TestCase(null, null)]
+        [TestCase("", "")]
+        public void ReplaceWholeWord(string inString, string expected)
+        {
+            Assert.AreEqual(expected, inString.ReplaceWord("a", "b"));
+        }
+
+        [Test]
+        [TestCase("word second", "word second")]
+        [TestCase("Word second", "word second")]
+        [TestCase(null, null)]
+        [TestCase("", "")]
+        public void Uncapitalize(string inString, string expected)
+        {
+            Assert.AreEqual(expected, inString.UnCapitalize());
         }
     }
 }

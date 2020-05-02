@@ -5,7 +5,7 @@ using System.Linq;
 namespace Atrea.Extensions
 {
     /// <summary>
-    ///     A set of useful extension methods related to the <see cref="IDictionary{TKey,TValue}"/> type.
+    ///     A set of useful extension methods related to the <see cref="IDictionary{TKey,TValue}" /> type.
     /// </summary>
     public static class DictionaryExtensions
     {
@@ -85,7 +85,7 @@ namespace Atrea.Extensions
                 }
                 else
                 {
-                    toReturn[key] = new List<TValue> {item};
+                    toReturn[key] = new List<TValue> { item };
                 }
             }
 
