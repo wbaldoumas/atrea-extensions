@@ -417,7 +417,7 @@ namespace Atrea.Extensions.Tests
                     new List<List<int>>
                     {
                         new List<int> {1},
-                        new List<int> (),
+                        new List<int>(),
                         new List<int> {4, 5, 6}
                     },
                     new List<List<int>>
@@ -431,9 +431,9 @@ namespace Atrea.Extensions.Tests
                 yield return new TestCaseData(
                     new List<List<int>>
                     {
-                        new List<int> (),
-                        new List<int> (),
-                        new List<int> ()
+                        new List<int>(),
+                        new List<int>(),
+                        new List<int>()
                     },
                     new List<List<int>>()
                 ).SetName("All empty sequences produce empty cartesian product.");
@@ -442,8 +442,8 @@ namespace Atrea.Extensions.Tests
                     new List<List<int>>
                     {
                         new List<int> {1, 2, 3},
-                        new List<int> (),
-                        new List<int> ()
+                        new List<int>(),
+                        new List<int>()
                     },
                     new List<List<int>>
                     {
