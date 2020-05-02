@@ -336,5 +336,29 @@ namespace Atrea.Extensions
                 }
             }
         }
+
+        /// <summary>
+        ///     Creates and returns the cartesian product of a list of sequences.
+        /// </summary>
+        /// <typeparam name="T">The source enumeration type</typeparam>
+        /// <param name="sequences">The sequences from which to create a cartesian product</param>
+        /// <returns>An enumerable of enumerables, representing the cartesian product of the given sequences</returns>
+        public static IEnumerable<IEnumerable<T>> CartesianProduct<T>(this IEnumerable<IEnumerable<T>> sequences)
+        {
+            IEnumerable<IEnumerable<T>> emptyProduct = new[] {Enumerable.Empty<T>()};
+
+            var populatedSequences = sequences.Where(sequence => sequence.Any()).ToList();
+
+            if (populatedSequences.Count == 0)
+            {
+                return new IEnumerable<T>[0];
+            }
+
+            return populatedSequences.Aggregate(
+                emptyProduct,
+                (accumulator, sequence) =>
+                    accumulator.SelectMany(acc => sequence, (acc, item) => acc.Concat(new[] {item}))
+            );
+        }
     }
 }
