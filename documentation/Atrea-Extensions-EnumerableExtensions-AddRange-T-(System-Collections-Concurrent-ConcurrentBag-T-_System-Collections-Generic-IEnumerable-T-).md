@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.AddRange&lt;T&gt;(System.Collections.Concurrent.ConcurrentBag&lt;T&gt;, System.Collections.Generic.IEnumerable&lt;T&gt;) Method
 Extension to add multiple items at a time to a ConcurrentBag.  

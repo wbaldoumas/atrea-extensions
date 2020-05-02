@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.ForEachAsync&lt;T,TOut&gt;(System.Collections.Generic.IEnumerable&lt;T&gt;, int, System.Func&lt;T,System.Threading.Tasks.Task&lt;TOut&gt;&gt;) Method
 Process an enumeration in parallel, asynchronously, with a limit on simultaneous asynchronous tasks.  

@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions')
 ## StringExtensions Class
 A set of useful extension methods for the [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String') type.  

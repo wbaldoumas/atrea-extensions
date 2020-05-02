@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[EnumerableExtensions](./Atrea-Extensions-EnumerableExtensions.md 'Atrea.Extensions.EnumerableExtensions')
 ## EnumerableExtensions.Combinations&lt;T&gt;(System.Collections.Generic.IList&lt;T&gt;, int) Method
 Creates and returns an enumeration of lists, which is every combinationSize size combination that  
@@ -22,4 +21,5 @@ The source enumeration type
   
 #### Returns
 [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[T](#Atrea-Extensions-EnumerableExtensions-Combinations-T-(System-Collections-Generic-IList-T-_int)-T 'Atrea.Extensions.EnumerableExtensions.Combinations&lt;T&gt;(System.Collections.Generic.IList&lt;T&gt;, int).T')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  
-An enumeration of lists, which is every combinationSize combination that can be created from the source enumeration  
+An enumeration of lists, which is every combinationSize combination that can be created from the source  
+enumeration  

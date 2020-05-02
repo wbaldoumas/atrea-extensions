@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[DictionaryExtensions](./Atrea-Extensions-DictionaryExtensions.md 'Atrea.Extensions.DictionaryExtensions')
 ## DictionaryExtensions.ToMultiLookup&lt;TKey,TValue&gt;(System.Collections.Generic.IEnumerable&lt;TValue&gt;, System.Func&lt;TValue,TKey&gt;) Method
 Create a lookup by key that maps to multiple items per key.  

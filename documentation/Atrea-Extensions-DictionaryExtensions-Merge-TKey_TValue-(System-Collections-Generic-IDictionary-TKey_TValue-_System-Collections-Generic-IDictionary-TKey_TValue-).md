@@ -1,4 +1,3 @@
-#### [Atrea.Extensions](./index.md 'index')
 ### [Atrea.Extensions](./Atrea-Extensions.md 'Atrea.Extensions').[DictionaryExtensions](./Atrea-Extensions-DictionaryExtensions.md 'Atrea.Extensions.DictionaryExtensions')
 ## DictionaryExtensions.Merge&lt;TKey,TValue&gt;(System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;, System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;) Method
 Merge the new dictionary into the source directory, overwriting on duplicate keys.  
