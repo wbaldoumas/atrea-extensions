@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Atrea.Extensions
 {
     /// <summary>
-    ///     A set of useful extension methods related to the <see cref="IEnumerable{T}"/> type.
+    ///     A set of useful extension methods related to the <see cref="IEnumerable{T}" /> type.
     /// </summary>
     public static class EnumerableExtensions
     {
@@ -226,14 +226,18 @@ namespace Atrea.Extensions
             Func<T, TKey> keySelector)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException(nameof(source));
+            }
 
             var comparer = Comparer<TKey>.Default;
 
             using (var iterator = source.GetEnumerator())
             {
                 if (!iterator.MoveNext())
+                {
                     return true;
+                }
 
                 var current = keySelector(iterator.Current);
 
@@ -242,7 +246,9 @@ namespace Atrea.Extensions
                     var next = keySelector(iterator.Current);
 
                     if (comparer.Compare(current, next) > 0)
+                    {
                         return false;
+                    }
 
                     current = next;
                 }
@@ -266,8 +272,10 @@ namespace Atrea.Extensions
             {
                 var box = new byte[1];
 
-                do provider.GetBytes(box);
-                while (!(box[0] < count * (byte.MaxValue / count)));
+                do
+                {
+                    provider.GetBytes(box);
+                } while (!(box[0] < count * (byte.MaxValue / count)));
 
                 var k = box[0] % count;
                 count--;
@@ -286,13 +294,21 @@ namespace Atrea.Extensions
         /// <typeparam name="T">The source enumeration type</typeparam>
         /// <param name="source"></param>
         /// <param name="combinationSize"></param>
-        /// <returns>An enumeration of lists, which is every combinationSize combination that can be created from the source enumeration</returns>
+        /// <returns>
+        ///     An enumeration of lists, which is every combinationSize combination that can be created from the source
+        ///     enumeration
+        /// </returns>
         public static IEnumerable<T[]> Combinations<T>(this IList<T> source, int combinationSize)
         {
             if (source.Count < combinationSize)
+            {
                 throw new ArgumentException("List length can't be less than number of selected elements");
+            }
+
             if (combinationSize < 1)
+            {
                 throw new ArgumentException("Number of selected elements can't be less than 1");
+            }
 
             var result = new T[combinationSize];
 
@@ -330,7 +346,11 @@ namespace Atrea.Extensions
                 {
                     result[index++] = value++;
                     stack.Push(value);
-                    if (index != combinationSize) continue;
+                    if (index != combinationSize)
+                    {
+                        continue;
+                    }
+
                     yield return (int[]) result.Clone();
                     break;
                 }
@@ -345,7 +365,7 @@ namespace Atrea.Extensions
         /// <returns>An enumerable of enumerables, representing the cartesian product of the given sequences</returns>
         public static IEnumerable<IEnumerable<T>> CartesianProduct<T>(this IEnumerable<IEnumerable<T>> sequences)
         {
-            IEnumerable<IEnumerable<T>> emptyProduct = new[] {Enumerable.Empty<T>()};
+            IEnumerable<IEnumerable<T>> emptyProduct = new[] { Enumerable.Empty<T>() };
 
             var populatedSequences = sequences.Where(sequence => sequence.Any()).ToList();
 
@@ -357,7 +377,7 @@ namespace Atrea.Extensions
             return populatedSequences.Aggregate(
                 emptyProduct,
                 (accumulator, sequence) =>
-                    accumulator.SelectMany(acc => sequence, (acc, item) => acc.Concat(new[] {item}))
+                    accumulator.SelectMany(acc => sequence, (acc, item) => acc.Concat(new[] { item }))
             );
         }
     }
