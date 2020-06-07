@@ -40,4 +40,9 @@ dotnet add package Atrea.Extensions --version 1.3.0
   
 ---
   
-##### Show your support by contributing or starring the repo! :star::star::star::star::star: 
+#### Related Projects:
+
+* [Atrea.PolicyEngine](https://github.com/itabaiyu/atrea-policyengine)
+* [Atrea.Utilities](https://github.com/itabaiyu/atrea-utilities)
+
+**Show your support by contributing or starring the repo!** :star::star::star::star::star: 
