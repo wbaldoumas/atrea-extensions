@@ -25,8 +25,9 @@ jobs:
     - name: Set VERSION variable from tag
       run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
     - name: Publish Preview to NuGet
-      uses: brandedoutcast/publish-nuget@v2.5.5
+      uses: Elskom/publish-nuget@main
       with:
         PROJECT_FILE_PATH: src/Atrea.Extensions/Atrea.Extensions.csproj
+        PACKAGE_PATH: artifacts/
         NUGET_KEY: ${{secrets.PREVIEW_NUGET_API_KEY}}
         VERSION_STATIC: ${VERSION}
