@@ -1,0 +1,32 @@
+name: Publish Preview to NuGet
+
+on:
+  push:
+    tags:
+    - "v[0-9]+.[0-9]+.[0-9]+-preview-[0-9]+"
+    - "v[0-9]+.[0-9]+.[0-9]+-alpha-[0-9]+"
+    - "v[0-9]+.[0-9]+.[0-9]+-beta-[0-9]+"
+    - "v[0-9]+.[0-9]+.[0-9]+-prerelease-[0-9]+"
+    - "v[0-9]+.[0-9]+.[0-9]+-rc-[0-9]+"
+
+jobs:
+  publish_preview:
+
+    runs-on: ubuntu-latest
+    environment: "Publish Preview"
+
+    steps:
+
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Set VERSION variable from tag
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+    - name: Publish Preview to NuGet
+      uses: brandedoutcast/publish-nuget@v2.5.5
+      with:
+        PROJECT_FILE_PATH: src/Atrea.Extensions/Atrea.Extensions.csproj
+        NUGET_KEY: ${{secrets.PREVIEW_NUGET_API_KEY}}
+        VERSION_STATIC: ${VERSION}
