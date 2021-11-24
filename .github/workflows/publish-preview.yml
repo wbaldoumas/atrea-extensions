@@ -28,6 +28,5 @@ jobs:
       uses: Elskom/publish-nuget@main
       with:
         PROJECT_FILE_PATH: src/Atrea.Extensions/Atrea.Extensions.csproj
-        PACKAGE_PATH: artifacts/
         NUGET_KEY: ${{secrets.PREVIEW_NUGET_API_KEY}}
         VERSION_STATIC: ${VERSION}
