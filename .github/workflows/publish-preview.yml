@@ -16,20 +16,20 @@ jobs:
     environment: "Publish Preview"
 
     steps:
-
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
+    - name: Restore Dependencies
+      run: dotnet restore src
+    - name: Build
+      run: dotnet build src --configuration Release --no-restore
     - name: Set VERSION variable from tag
       run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
-    - name: Prep artifacts directory
-      run: mkdir artifacts
-    - name: Publish Preview to NuGet
-      uses: Elskom/publish-nuget@main
-      with:
-        PROJECT_FILE_PATH: src/Atrea.Extensions/Atrea.Extensions.csproj
-        PACKAGE_PATH: artifacts/
-        NUGET_KEY: ${{secrets.PREVIEW_NUGET_API_KEY}}
-        VERSION_STATIC: ${VERSION}
+    - name: Pack NuGet
+      run: dotnet pack src --no-build --configuration Release /p:Version=${VERSION} --output src
+    - name: Publish NuGet
+      run: dotnet nuget push src/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_KEY} --skip-duplicate
+      env:
+        NUGET_KEY: ${{ secrets.PREVIEW_NUGET_API_KEY }}
