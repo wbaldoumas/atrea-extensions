@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v3.0.3
+      uses: actions/setup-dotnet@v4.1.0
     - name: Build with dotnet
       run: cd src && dotnet build --configuration Release
     - name: Unit test with coverage report
